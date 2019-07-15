@@ -7,4 +7,4 @@ Browse/Like: Implemented 15.07
 
 GUI: Implemented 15.07
 
-Follow/Unfollow: 
+Follow/Unfollow: soon lol
