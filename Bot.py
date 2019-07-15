@@ -32,11 +32,14 @@ class Bot:
         while i < count:
             time.sleep(2)
             try:
+                driver.find_element_by_xpath("//span[@aria-label='Nie lubię']/..")
+                print("Photo already liked.")
+                time.sleep(2)
+            except Exception:
                 driver.find_element_by_xpath(
                     "/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[1]/button").click()
-                time.sleep(18)
                 i += 1
-            except NoSuchElementException:
-                time.sleep(2)
+                print(f"Liked {i} out of {count} photos.")
+                time.sleep(18)
             driver.find_element_by_link_text("Dalej").click()
         self.close()
