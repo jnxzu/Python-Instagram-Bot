@@ -5,21 +5,22 @@ import time
 
 
 class Bot:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    def __init__(self):
         self.driver = webdriver.Firefox()
 
-    def login(self):
+    def login(self, username, password):
         driver = self.driver
         driver.get("https://www.instagram.com/accounts/login/")
         time.sleep(2)
         username_input = driver.find_element_by_xpath("//input[@name='username']")
         pw_input = driver.find_element_by_xpath("//input[@name='password']")
-        username_input.send_keys(self.username)
-        pw_input.send_keys(self.password)
+        username_input.send_keys(username)
+        pw_input.send_keys(password)
         pw_input.send_keys(Keys.RETURN)
         time.sleep(2)
+
+    def close(self):
+        self.driver.close()
 
     def like(self, hashtag, count):
         driver = self.driver
@@ -34,10 +35,8 @@ class Bot:
                 driver.find_element_by_xpath(
                     "/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[1]/button").click()
                 time.sleep(18)
+                i += 1
             except NoSuchElementException:
                 time.sleep(2)
             driver.find_element_by_link_text("Dalej").click()
         self.close()
-
-    def close(self):
-        self.driver.close()
